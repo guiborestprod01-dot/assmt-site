@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>ASSMT Regularização</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Georreferenciamento, CAR, CCIR, ITR, licenciamento ambiental, APF e regularização fundiária em Mato Grosso.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: página única clean, fundo branco, verde da logo só como destaque, conteúdo em até 1100px */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --soft:#F6F7F6; --ink:#1B1F1D; --muted:#5E6762;
+  --line:#E5E8E6; --mata:#0A6B33; --mata-hover:#085A2B; --on-mata:#FFFFFF; --mata-soft:#EEF5F0; --marco:#F2B320;
+  --f-display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", Arial, sans-serif;
+  --f-mono:"Source Sans 3", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121614; --surface:#181D1A; --soft:#161B18; --ink:#ECEFED; --muted:#A3ADA7;
+  --line:#2A312D; --mata:#5DBB83; --mata-hover:#74C994; --on-mata:#0B1A11; --mata-soft:#1A2620; --marco:#F2B320; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121614; --surface:#181D1A; --soft:#161B18; --ink:#ECEFED; --muted:#A3ADA7;
+  --line:#2A312D; --mata:#5DBB83; --mata-hover:#74C994; --on-mata:#0B1A11; --mata-soft:#1A2620; --marco:#F2B320; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--f-body)}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.12;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.12rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:600 .8rem/1.3 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--mata)}
+:focus-visible{outline:3px solid var(--mata);outline-offset:3px;border-radius:4px}
+
+/* Topo */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+header.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{height:40px;width:auto}
+.brand .word{font:800 1.35rem/1 var(--f-display);letter-spacing:.02em;color:var(--mata)}
+.brand small{display:block;font:400 .75rem/1.2 var(--f-body);color:var(--muted);letter-spacing:.04em}
+nav.links{display:flex;gap:22px;font-weight:600;font-size:.98rem}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+@media (max-width:820px){nav.links{display:none}}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font:600 1rem/1 var(--f-body);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s}
+.btn-whats{background:var(--mata);color:var(--on-mata)}
+.btn-whats:hover{background:var(--mata-hover)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--mata);color:var(--mata)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center;padding-block:72px 64px}
+.hero h1{font-size:clamp(2.1rem,5vw,3.3rem);font-weight:700;letter-spacing:-.02em;margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--mata)}
+.hero p.lead{margin-top:18px;font-size:1.18rem;color:var(--muted);max-width:34em}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.check-card{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:26px 24px;display:grid;gap:14px}
+.check-card h3{font-size:1.15rem}
+.check-card ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.check-card li{display:flex;align-items:center;gap:12px;font-size:1.02rem}
+.check-card li::before{content:"";flex:none;width:22px;height:22px;border-radius:50%;background:var(--mata) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/14px no-repeat}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr;padding-block:40px}}
+
+section{padding-block:64px}
+.sec-head{display:grid;gap:10px;max-width:46em;margin-bottom:32px}
+.sec-head p{color:var(--muted)}
+
+/* Serviços */
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.svc{background:var(--surface);padding:24px 22px;display:grid;gap:8px;align-content:start}
+.svc .tag{font:600 .75rem/1.2 var(--f-body);color:var(--mata);letter-spacing:.04em;text-transform:uppercase}
+.svc p{color:var(--muted);font-size:.98rem}
+.svc-cta{margin-top:6px;font:600 .95rem/1.2 var(--f-body);color:var(--mata);text-decoration:none}
+.svc-cta:hover{text-decoration:underline}
+@media (max-width:640px){.services{grid-template-columns:1fr}}
+
+/* Público */
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.aud div{display:grid;gap:6px;align-content:start;padding-top:14px;border-top:2px solid var(--mata)}
+.aud p{color:var(--muted)}
+@media (max-width:760px){.aud{grid-template-columns:1fr}}
+/* Passos */
+.band{background:var(--soft)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;counter-reset:s}
+.step{display:grid;gap:8px}
+.step::before{counter-increment:s;content:counter(s);font:800 1.1rem/1 var(--f-display);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--mata-soft);color:var(--mata)}
+.step p{color:var(--muted)}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* Consultas */
+.tools-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
+@media (max-width:900px){.tools-grid{grid-template-columns:1fr}}
+.linklist{display:grid;gap:10px}
+.linkgroup h3{font-size:.8rem;font-family:var(--f-body);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.linkgroup:first-child h3{margin-top:0}
+a.lk{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;text-decoration:none}
+a.lk:hover{border-color:var(--mata)}
+a.lk b{font-family:var(--f-display);font-weight:700}
+a.lk span{grid-column:1;color:var(--muted);font-size:.95rem}
+a.lk i{grid-row:1/3;grid-column:2;font:600 .8rem/1 var(--f-body);color:var(--mata);font-style:normal;white-space:nowrap}
+.disclaimer{margin-top:14px;font-size:.88rem;color:var(--muted)}
+
+/* Conversor */
+.conv{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:14px;position:sticky;top:90px}
+.conv h3{font-size:1.15rem}
+.conv label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
+.conv input,.conv select{font:400 1.05rem var(--f-body);font-variant-numeric:tabular-nums;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+.conv .out{display:grid;gap:0;font-size:.92rem}
+.conv .out div{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.conv .out div:last-child{border-bottom:0}
+.conv .out b{font-variant-numeric:tabular-nums;font-weight:600}
+.conv small{color:var(--muted);font-size:.82rem;line-height:1.45}
+
+/* FAQ */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;font:600 1.08rem/1.35 var(--f-body);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-body);font-size:1.3rem;line-height:1;color:var(--mata)}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);max-width:60em}
+
+/* Contato */
+.contact{background:var(--soft);color:var(--ink)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.contact h2{color:var(--ink)}
+.contact p.lead{color:var(--muted);margin-top:12px}
+.contact .num{margin-top:22px;font:500 1.4rem/1 var(--f-mono);user-select:all}
+form.lead-form{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:12px}
+form.lead-form label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
+form.lead-form input,form.lead-form select,form.lead-form textarea{font:400 1rem var(--f-body);padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+form.lead-form .btn{justify-content:center;margin-top:4px}
+@media (max-width:820px){.contact .wrap{grid-template-columns:1fr}}
+
+footer{padding-block:28px;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+.float-whats{position:fixed;right:calc(16px + env(safe-area-inset-right, 0px));bottom:calc(16px + env(safe-area-inset-bottom, 0px));z-index:8;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px -8px rgba(0,0,0,.35)}
+.float-whats svg{width:28px;height:28px}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="ASSMT, início">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAYFBMVEUAAAADdDD5uAn5z1f7xDAujVL5vB1WoW8ghUb7+/b7wSUOgjn25aP5xTb3vCI5kVt2tI75yUii0qocfUIZg0L+wRD1uyYZfkAXfT4A//9CmmSMtYwgf0Wqxsb/f3//v399grMwAAAAIHRSTlMA/fgeWmKgIJ4DlO4JLGI0EE4Kq8ryIsm7AUgMdgkCBObefkgAAAOgSURBVHjatVnZkqMwDMRYPsFcOeba3fn/v1wIGGQwhMPWw9RUBVpSq1uYJEmOBWNJ1BAZKWPiNzLLpIqYgGWEEBaVoC5EtATyhU9kNILIEJFIEmQMEZOgaC0wgiKCGaoPnOAzj0lQFJJKMovAc27u8wQ3FW/CEUgSxBMi5BL1JZBRCQpKkiArUYXBV3ItgYxKULA5i3V88tGE3xHB58zIZlwmqdrGJ5fPGPJNgqskfZO3IcI9ZSKYgZEdweJYIARJP5/7EsioBF0gSZDdIcItUcaCteBFyiq/tctQBJUriU+cMdYfwzIISWx9mCIESWJLjizAWt08p6jrJPkVJLb7O2CG5p1f2cWN8fb+iySV7xkYXmjPkdTsKe8KSbtUmJ83w06JlGeVtHt+Z4/0bO8R8ed+iqQDi4adIUkdadx77Z8zS7S63O2uJbqznM8tkmR2aBHnPpKyrY0hhCgZk64+mp0dZ9n9Jtl3uccLAiXJ2OodDRs7zu6SiUPvO12StqieJG+KahrBjZ07Pgpm+1imqOxnmWQXXmeVkAO/bgo1krO/dtCccwBD1bwN0oFlhKnF4+BjUTylNbRIsMSn6RgaKHVTuKOwXUn21xEtBa17hEdqFpJO3eCAc4hbzxPL7de/HTm41RbcBaAzrvUjTbdylH0KKarBXJgcCnx+80O7TOc11HVR6FkZmuKxIpvfptEqo+eVaV0UBV2zf9ssqodPZAo5eU95qeG608ieIx6+TZupiXn5OTiMHjo95jVfEAWpM1wED+bMGz8dATjt8dM0m5bl9Cm8+ZqWmhraqdTG0NmV+SiP1jn9v5YeypdCsFOkT1rX5mndRB3dtC7DWZRN0U+e01n5Ljw1jkJ6M+QLA3RWRgUVaJC2Jr3QWKI8bki7ycDSYjOXWbiU527P4JuXE+0VJl0L1H2PyJVDz/S58tQ+7CRIgBeGvsJ0w+b40pGBwoMPSyW8rirg+cLq/gLXiVpqCt2gR31afpR2puFU7/GaWnOAvevRapwixK/+g0LN55MWB702TQ3Q+lXcoWcaP5z4SQQvGvsA4c6utwLU9OQTeUoBmP8hWa4vwqOFoJGYbP12V8DF7zU7nEFA4OD39MD1n6MUDJi9257YDJwmIQLjg4Mf9Ne0F+UFHgaEhB/cjPHroPgUUQJYrMES8FFAJgZ+G3rg3BFTyFC1mvBpEisUFlOMgPD69IjpKxr+L487gOQfjyMgxw6QRA2jDw7gP5LlJOQn02+ZAAAAAElFTkSuQmCC" alt="" width="40" height="40">
+      <span><span class="word">ASSMT</span><small>Regularização e Soluções Ambientais</small></span>
+    </a>
+    <nav class="links" aria-label="Seções">
+      <a href="#servicos">Serviços</a>
+      <a href="#consultas">Consultas grátis</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-whats js-whats" href="#contato">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.2 1.3Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Mato Grosso · do pequeno ao grande produtor</span>
+      <h1>Sua terra <em>regularizada</em>, sem dor de cabeça.</h1>
+      <p class="lead">Georreferenciamento, CAR, licenças, usucapião, regularização fundiária e muito mais. Você acompanha tudo pelo WhatsApp.</p>
+      <div class="ctas">
+        <a class="btn btn-whats js-whats" href="#contato">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>
+          Falar com um técnico
+        </a>
+        <a class="btn btn-ghost" href="#consultas">Consultar meu imóvel grátis</a>
+      </div>
+    </div>
+    <div class="check-card" aria-label="O que a ASSMT deixa em dia">
+      <h3>Seu imóvel em dia</h3>
+      <ul>
+        <li>Georreferenciamento certificado</li>
+        <li>CAR ativo</li>
+        <li>CCIR e ITR em dia</li>
+        <li>Licenças ambientais</li>
+        <li>Matrícula regularizada no cartório</li>
+        <li>Sem embargos</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Serviços</span>
+      <h2>Tudo o que o seu imóvel precisa para ficar em dia</h2>
+      <p>Do levantamento em campo ao protocolo no órgão. Se o seu caso não estiver na lista, chame no WhatsApp que a gente avalia.</p>
+    </div>
+    <div class="services">
+      <div class="svc"><span class="tag">INCRA · SIGEF</span><h3>Georreferenciamento</h3><p>Levantamento com GNSS, planta, memorial descritivo e certificação no SIGEF para averbar na matrícula.</p></div>
+      <div class="svc"><span class="tag">SEMA-MT</span><h3>Licenciamento ambiental</h3><p>Licenças para atividades rurais, empresas e mineração, estudos ambientais e acompanhamento do processo até a emissão.</p></div>
+      <div class="svc"><span class="tag">Intermat · INCRA · Cartório</span><h3>Regularização fundiária</h3><p>Títulos no Intermat e no INCRA, regularização de posse e de áreas rurais e urbanas.</p></div>
+      <div class="svc"><span class="tag">Cartório · Justiça</span><h3>Usucapião</h3><p>Usucapião rural e urbana, judicial ou direto no cartório, com planta, memorial descritivo e toda a documentação técnica.</p></div>
+      <div class="svc"><span class="tag">Registro de Imóveis</span><h3>Registros em cartório</h3><p>Averbação do georreferenciamento, retificação de área, abertura de matrícula, desmembramento e unificação.</p></div>
+      <div class="svc"><span class="tag">SICAR · SIMCAR-MT</span><h3>CAR</h3><p>Inscrição, retificação e análise do Cadastro Ambiental Rural, com APP e Reserva Legal corretas.</p></div>
+      <div class="svc"><span class="tag">INCRA · Intermat</span><h3>Reforma agrária e assentamentos</h3><p>Regularização de lotes em assentamentos: cadastro do ocupante, CCU, Título de Domínio e quitação junto ao INCRA e ao Intermat.</p></div>
+      <div class="svc"><span class="tag">INCRA · SNCR</span><h3>CCIR</h3><p>Cadastro, atualização e emissão do Certificado de Cadastro de Imóvel Rural, exigido em venda e financiamento.</p></div>
+      <div class="svc"><span class="tag">Receita Federal · CAFIR</span><h3>ITR</h3><p>Declaração anual do ITR, inscrição e atualização no CAFIR e correção de declarações anteriores.</p></div>
+      <div class="svc"><span class="tag">SEMA-MT</span><h3>APF</h3><p>Autorização Provisória de Funcionamento para a atividade rural enquanto a licença definitiva sai.</p></div>
+      <div class="svc"><span class="tag">SEMA-MT · PRA</span><h3>Recuperação de áreas</h3><p>PRADA, adesão ao Programa de Regularização Ambiental e compensação de Reserva Legal.</p></div>
+      <div class="svc"><span class="tag">SEMA-MT · IBAMA</span><h3>Embargos ambientais</h3><p>Consulta e análise do embargo, defesa em autos de infração, PRADA e pedido de desembargo na SEMA e no IBAMA.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-block:48px">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:24px">
+      <span class="eyebrow">Para quem</span>
+      <h2>Do lote de assentamento à grande fazenda</h2>
+    </div>
+    <div class="aud">
+      <div><h3>Pequeno produtor e assentado</h3><p>Título do lote, CAR, CCIR e ITR em dia para vender, financiar e acessar programas do governo.</p></div>
+      <div><h3>Médio e grande produtor</h3><p>Georreferenciamento, licenças, APF, Reserva Legal e regularização de várias matrículas ao mesmo tempo.</p></div>
+      <div><h3>Mineradoras e empresas</h3><p>Licenciamento ambiental na SEMA-MT, estudos, condicionantes e defesa em autos de infração.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Três passos, e você acompanha tudo pelo celular</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Você manda os documentos</h3><p>Matrícula, CCIR, CAR ou o que tiver em mãos. Pode ser foto pelo WhatsApp.</p></div>
+      <div class="step"><h3>A gente analisa e orça</h3><p>Dizemos o que falta, quanto custa e quanto tempo leva, antes de começar.</p></div>
+      <div class="step"><h3>Cuidamos até o fim</h3><p>Campo, peças técnicas e protocolo. Você recebe o documento pronto.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="consultas">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Consultas grátis</span>
+      <h2>Confira a situação do seu imóvel agora</h2>
+      <p>Os sites oficiais que a gente usa no dia a dia. Todos são gratuitos e abrem em uma nova aba.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="linklist">
+        <div class="linkgroup">
+          <h3>Fundiário · INCRA e Intermat</h3>
+          <div class="linklist">
+            <a class="lk" href="https://sigef.incra.gov.br" target="_blank" rel="noopener"><b>SIGEF</b><span>Veja se a área já tem georreferenciamento certificado.</span><i>INCRA ↗</i></a>
+            <a class="lk" href="https://sncr.serpro.gov.br/ccir/emissao" target="_blank" rel="noopener"><b>Emitir CCIR</b><span>Emita o certificado do imóvel com o código do INCRA.</span><i>SNCR ↗</i></a>
+            <a class="lk" href="https://acervofundiario.incra.gov.br" target="_blank" rel="noopener"><b>Acervo Fundiário</b><span>Mapa com imóveis certificados, assentamentos e áreas públicas.</span><i>INCRA ↗</i></a>
+            <a class="lk" href="https://www.intermat.mt.gov.br" target="_blank" rel="noopener"><b>Intermat</b><span>Instituto de Terras de MT: títulos e regularização estadual.</span><i>MT ↗</i></a>
+          </div>
+        </div>
+        <div class="linkgroup">
+          <h3>Ambiental · SEMA, SICAR e IBAMA</h3>
+          <div class="linklist">
+            <a class="lk" href="https://www.car.gov.br" target="_blank" rel="noopener"><b>SICAR</b><span>Consulta pública do CAR pelo número do recibo.</span><i>Federal ↗</i></a>
+            <a class="lk" href="https://monitoramento.sema.mt.gov.br/simcar/" target="_blank" rel="noopener"><b>SIMCAR-MT</b><span>Situação do CAR e dos processos ambientais em Mato Grosso.</span><i>SEMA ↗</i></a>
+            <a class="lk" href="https://www.sema.mt.gov.br" target="_blank" rel="noopener"><b>SEMA-MT</b><span>Licenças, APF, normas e serviços da Secretaria de Meio Ambiente.</span><i>MT ↗</i></a>
+            <a class="lk" href="https://servicos.ibama.gov.br/ctf/publico/areasembargadas/ConsultaPublicaAreasEmbargadas.php" target="_blank" rel="noopener"><b>Áreas embargadas</b><span>Confira se há embargo do IBAMA por CPF, CNPJ ou município.</span><i>IBAMA ↗</i></a>
+          </div>
+        </div>
+        <div class="linkgroup">
+          <h3>Impostos e mapas</h3>
+          <div class="linklist">
+            <a class="lk" href="https://www.gov.br/receitafederal/pt-br" target="_blank" rel="noopener"><b>ITR e CAFIR</b><span>Orientações da Receita sobre o imposto e o cadastro do imóvel.</span><i>Receita ↗</i></a>
+            <a class="lk" href="https://plataforma.brasil.mapbiomas.org" target="_blank" rel="noopener"><b>MapBiomas</b><span>Veja o uso da terra e o desmatamento da área ano a ano.</span><i>Mapa ↗</i></a>
+            <a class="lk" href="https://earth.google.com/web" target="_blank" rel="noopener"><b>Google Earth</b><span>Imagens de satélite e medição rápida de distâncias e áreas.</span><i>Mapa ↗</i></a>
+          </div>
+        </div>
+        <p class="disclaimer">Achou alguma pendência? Mande o print no WhatsApp que a gente explica o que significa e como resolver.</p>
+      </div>
+
+      <form class="conv" id="conv" onsubmit="return false" aria-labelledby="conv-t">
+        <h3 id="conv-t">Conversor de área</h3>
+        <label for="conv-val">Área
+          <input id="conv-val" type="number" min="0" step="any" value="100" inputmode="decimal">
+        </label>
+        <label for="conv-un">Unidade
+          <select id="conv-un">
+            <option value="ha" selected>hectares (ha)</option>
+            <option value="alqp">alqueire paulista</option>
+            <option value="alqm">alqueire mineiro / goiano</option>
+            <option value="m2">metros quadrados (m²)</option>
+          </select>
+        </label>
+        <div class="out" aria-live="polite">
+          <div><span>Hectares</span><b id="o-ha">–</b></div>
+          <div><span>Alqueire paulista</span><b id="o-alqp">–</b></div>
+          <div><span>Alqueire mineiro</span><b id="o-alqm">–</b></div>
+          <div><span>Metros quadrados</span><b id="o-m2">–</b></div>
+        </div>
+        <small>1 alqueire paulista = 2,42 ha · 1 alqueire mineiro = 4,84 ha. O valor da escritura pode diferir da área medida no georreferenciamento.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="duvidas" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Dúvidas comuns</span>
+      <h2>Perguntas que a gente mais ouve</h2>
+    </div>
+    <details><summary>Quando o georreferenciamento é obrigatório?</summary><p>O cartório exige o georreferenciamento certificado no SIGEF para venda, desmembramento, unificação e outras mudanças na matrícula de imóveis rurais, conforme o tamanho da área e os prazos da Lei 10.267/2001.</p></details>
+    <details><summary>Meu CCIR venceu. Posso vender ou financiar?</summary><p>Não. O CCIR em dia é pedido em transferências, partilhas e financiamentos rurais. A gente atualiza o cadastro no SNCR e emite o certificado novo.</p></details>
+    <details><summary>CAR pendente atrapalha o crédito rural?</summary><p>Sim. Bancos pedem o CAR ativo para liberar crédito. Se o seu está pendente ou com sobreposição, fazemos a retificação no SIMCAR.</p></details>
+    <details><summary>Tenho um lote de assentamento. Consigo o título?</summary><p>Na maioria dos casos, sim. A gente verifica a situação do lote no INCRA ou no Intermat, regulariza o cadastro do ocupante e acompanha o pedido do CCU ou do Título de Domínio.</p></details>
+    <details><summary>Minha área foi embargada. O que fazer?</summary><p>Primeiro, descobrir quem embargou e por quê: SEMA-MT ou IBAMA. A gente consulta o embargo, faz a defesa no prazo e monta o plano de recuperação (PRADA) exigido para pedir o desembargo. Embargo ativo pode travar venda de produção e crédito rural, então vale agir rápido.</p></details>
+    <details><summary>O que é a APF?</summary><p>É a Autorização Provisória de Funcionamento da SEMA-MT, que permite seguir com a atividade rural enquanto a licença ambiental definitiva está em análise.</p></details>
+    <details><summary>Atendem fora de Cuiabá?</summary><p>Atendemos todo o Mato Grosso. Boa parte do trabalho é feita online, e a equipe vai a campo quando o serviço exige medição.</p></details>
+  </div>
+</section>
+
+<section id="contato" class="contact">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Contato</span>
+      <h2>Conte o seu caso e receba um orçamento</h2>
+      <p class="lead">Preencha ao lado e a mensagem já vai pronta para o nosso WhatsApp. Se preferir, chame a gente direto:</p>
+      <p style="margin-top:22px"><a class="btn btn-whats js-whats" href="#contato">Fale conosco</a></p>
+    </div>
+    <form class="lead-form" id="lead">
+      <label for="f-nome">Seu nome<input id="f-nome" required autocomplete="name" placeholder="Ex.: João da Silva"></label>
+      <label for="f-cidade">Cidade do imóvel<input id="f-cidade" placeholder="Ex.: Rosário Oeste"></label>
+      <label for="f-serv">Serviço
+        <select id="f-serv">
+          <option>Georreferenciamento</option><option>Licenciamento ambiental</option><option>Regularização fundiária</option><option>Usucapião</option><option>Registro em cartório</option><option>Reforma agrária / lote de assentamento</option>
+          <option>CAR</option><option>CCIR</option><option>ITR</option><option>APF</option><option>Mineração</option><option>Embargo ambiental (SEMA / IBAMA)</option><option>Auto de infração / multa</option><option>Outro</option>
+        </select>
+      </label>
+      <label for="f-msg">Mensagem<textarea id="f-msg" rows="3" placeholder="Tamanho da área, situação atual, prazo..."></textarea></label>
+      <a class="btn btn-whats" id="f-send" href="#" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>ASSMT Regularização e Soluções Ambientais · Mato Grosso</span>
+    <span>Os links de consulta levam a sites oficiais do governo e de terceiros.</span>
+  </div>
+</footer>
+
+<a class="float-whats js-whats" href="#contato" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.2 1.3Z"/></svg>
+</a>
+
+<script>
+/* CONFIG: troque pelo WhatsApp da ASSMT (DDI + DDD + número, só dígitos) */
+const WHATS = "5565996011907";
+
+const wa = (t) => "https://wa.me/" + WHATS + "?text=" + encodeURIComponent(t);
+const FICHA = "\n\nPara adiantar:\n• Cidade do imóvel: \n• Tamanho da área (ha): \n• Tenho em mãos (matrícula, CCIR, CAR...): \n• Situação / o que preciso: ";
+document.querySelectorAll(".js-whats").forEach(a => {
+  a.href = wa("Olá, ASSMT! Vim pelo site e quero um orçamento para regularizar meu imóvel." + FICHA);
+  a.target = "_blank"; a.rel = "noopener";
+});
+document.querySelectorAll(".svc").forEach(card => {
+  const serv = card.querySelector("h3").textContent.trim();
+  const a = document.createElement("a");
+  a.className = "svc-cta"; a.target = "_blank"; a.rel = "noopener";
+  a.href = wa("Olá, ASSMT! Vim pelo site e quero um orçamento de " + serv + "." + FICHA);
+  a.textContent = "Pedir orçamento no WhatsApp →";
+  card.appendChild(a);
+});
+
+const f = id => document.getElementById(id);
+function buildMsg(){
+  const parts = ["Olá, ASSMT! Vim pelo site e quero um orçamento."];
+  if (f("f-nome").value.trim()) parts.push("Nome: " + f("f-nome").value.trim());
+  if (f("f-cidade").value.trim()) parts.push("Cidade do imóvel: " + f("f-cidade").value.trim());
+  parts.push("Serviço: " + f("f-serv").value);
+  if (f("f-msg").value.trim()) parts.push(f("f-msg").value.trim());
+  f("f-send").href = wa(parts.join("\n"));
+}
+["f-nome","f-cidade","f-serv","f-msg"].forEach(id => f(id).addEventListener("input", buildMsg));
+f("lead").addEventListener("submit", e => e.preventDefault());
+buildMsg();
+
+/* Conversor de área */
+const HA = { ha:1, alqp:2.42, alqm:4.84, m2:0.0001 };
+const fmt = (n, d) => n.toLocaleString("pt-BR", { maximumFractionDigits: d });
+function conv(){
+  const v = parseFloat(String(f("conv-val").value).replace(",", "."));
+  const ha = isFinite(v) && v >= 0 ? v * HA[f("conv-un").value] : NaN;
+  const ok = isFinite(ha);
+  f("o-ha").textContent = ok ? fmt(ha, 4) + " ha" : "–";
+  f("o-alqp").textContent = ok ? fmt(ha / 2.42, 4) : "–";
+  f("o-alqm").textContent = ok ? fmt(ha / 4.84, 4) : "–";
+  f("o-m2").textContent = ok ? fmt(ha * 10000, 0) + " m²" : "–";
+}
+f("conv-val").addEventListener("input", conv);
+f("conv-un").addEventListener("change", conv);
+conv();
+</script>
+
+</body>
+</html>
