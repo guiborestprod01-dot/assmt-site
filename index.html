@@ -6,7 +6,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>ASSMT Regularização</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Georreferenciamento, CAR, CCIR, ITR, licenciamento ambiental, APF e regularização fundiária em Mato Grosso.">
+<meta name="description" content="Georreferenciamento, CAR, CCIR, ITR, licenciamento ambiental, outorga de água, PRAD, embargos e regularização fundiária em Mato Grosso.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -109,6 +109,25 @@ section{padding-block:64px}
 .aud-item h3{padding-top:12px;border-top:2px solid var(--mata)}
 .steps-photo{width:100%;height:260px;object-fit:cover;border-radius:16px;margin-bottom:36px;background:var(--soft)}
 @media (max-width:760px){.steps-photo{height:180px}}
+
+/* Catálogo de serviços */
+.cat-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.cat-tabs a{padding:8px 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-weight:600;font-size:.92rem;color:var(--muted)}
+.cat-tabs a:hover{border-color:var(--mata);color:var(--mata)}
+.cat{margin-top:40px;scroll-margin-top:90px}
+.cat:first-of-type{margin-top:0}
+.cat-head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.cat-head img{width:72px;height:72px;border-radius:12px;object-fit:cover;flex:none;background:var(--soft)}
+.cat-head p{color:var(--muted);font-size:.98rem;margin-top:4px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+a.card{display:grid;gap:6px;align-content:start;padding:18px;border:1px solid var(--line);border-radius:14px;text-decoration:none;background:var(--surface);transition:border-color .15s, transform .15s}
+a.card:hover{border-color:var(--mata);transform:translateY(-2px)}
+a.card .tag{font:600 .72rem/1.2 var(--f-body);color:var(--mata);letter-spacing:.04em;text-transform:uppercase}
+a.card p{color:var(--muted);font-size:.96rem}
+a.card .more{margin-top:6px;font-weight:600;color:var(--mata);font-size:.95rem}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.cards{grid-template-columns:1fr}.cat-head img{width:56px;height:56px}}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
 /* Consultas */
 .tools-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
 @media (max-width:900px){.tools-grid{grid-template-columns:1fr}}
@@ -218,21 +237,62 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <div class="sec-head">
       <span class="eyebrow">Serviços</span>
       <h2>Tudo o que o seu imóvel precisa para ficar em dia</h2>
-      <p>Do levantamento em campo ao protocolo no órgão. Se o seu caso não estiver na lista, chame no WhatsApp que a gente avalia.</p>
+      <p>Do levantamento em campo ao protocolo no órgão. Toque em um serviço para ver como funciona. Se o seu caso não estiver na lista, chame no WhatsApp que a gente avalia.</p>
     </div>
-    <div class="services">
-      <div class="svc"><span class="tag">INCRA · SIGEF</span><h3>Georreferenciamento</h3><p>Levantamento com GNSS, planta, memorial descritivo e certificação no SIGEF para averbar na matrícula.</p></div>
-      <div class="svc"><span class="tag">SEMA-MT</span><h3>Licenciamento ambiental</h3><p>Licenças para atividades rurais, empresas e mineração, estudos ambientais e acompanhamento do processo até a emissão.</p></div>
-      <div class="svc"><span class="tag">Intermat · INCRA · Cartório</span><h3>Regularização fundiária</h3><p>Títulos no Intermat e no INCRA, regularização de posse e de áreas rurais e urbanas.</p></div>
-      <div class="svc"><span class="tag">Cartório · Justiça</span><h3>Usucapião</h3><p>Usucapião rural e urbana, judicial ou direto no cartório, com planta, memorial descritivo e toda a documentação técnica.</p></div>
-      <div class="svc"><span class="tag">Registro de Imóveis</span><h3>Registros em cartório</h3><p>Averbação do georreferenciamento, retificação de área, abertura de matrícula, desmembramento e unificação.</p></div>
-      <div class="svc"><span class="tag">SICAR · SIMCAR-MT</span><h3>CAR</h3><p>Inscrição, retificação e análise do Cadastro Ambiental Rural, com APP e Reserva Legal corretas.</p></div>
-      <div class="svc"><span class="tag">INCRA · Intermat</span><h3>Reforma agrária e assentamentos</h3><p>Regularização de lotes em assentamentos: cadastro do ocupante, CCU, Título de Domínio e quitação junto ao INCRA e ao Intermat.</p></div>
-      <div class="svc"><span class="tag">INCRA · SNCR</span><h3>CCIR</h3><p>Cadastro, atualização e emissão do Certificado de Cadastro de Imóvel Rural, exigido em venda e financiamento.</p></div>
-      <div class="svc"><span class="tag">Receita Federal · CAFIR</span><h3>ITR</h3><p>Declaração anual do ITR, inscrição e atualização no CAFIR e correção de declarações anteriores.</p></div>
-      <div class="svc"><span class="tag">SEMA-MT</span><h3>APF</h3><p>Autorização Provisória de Funcionamento para a atividade rural enquanto a licença definitiva sai.</p></div>
-      <div class="svc"><span class="tag">SEMA-MT · PRA</span><h3>Recuperação de áreas</h3><p>PRADA, adesão ao Programa de Regularização Ambiental e compensação de Reserva Legal.</p></div>
-      <div class="svc"><span class="tag">SEMA-MT · IBAMA</span><h3>Embargos ambientais</h3><p>Consulta e análise do embargo, defesa em autos de infração, PRADA e pedido de desembargo na SEMA e no IBAMA.</p></div>
+    <nav class="cat-tabs" aria-label="Categorias de serviço"><a href="#cat-fundiario">Regularização do imóvel</a><a href="#cat-car">CAR e regularização ambiental</a><a href="#cat-licencas">Licenças e autorizações</a><a href="#cat-laudos">Laudos, perícias e consultoria</a></nav>
+    <div class="cat" id="cat-fundiario">
+      <div class="cat-head"><img src="https://images.unsplash.com/photo-1675896655875-c2bab196d4dd?w=144&h=144&fit=crop&auto=format&q=70" alt="" width="72" height="72" loading="lazy"><div><h3 style="font-size:1.3rem">Regularização do imóvel</h3><p>Documentação, medição e registro da terra.</p></div></div>
+      <div class="cards">
+        <a class="card" href="georreferenciamento.html"><span class="tag">INCRA · SIGEF</span><h3>Georreferenciamento</h3><p>Medição com GNSS e certificação no SIGEF.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="averbacao-georreferenciamento.html"><span class="tag">Registro de Imóveis</span><h3>Averbação do georreferenciamento na matrícula</h3><p>Leva a certificação do SIGEF para a matrícula.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="regularizacao-fundiaria.html"><span class="tag">Intermat · INCRA · Cartório</span><h3>Regularização fundiária rural</h3><p>Título e matrícula para quem tem só a posse.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="reforma-agraria-assentamentos.html"><span class="tag">INCRA · Intermat</span><h3>Reforma agrária e assentamentos</h3><p>Regularização de lotes em assentamentos.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="usucapiao.html"><span class="tag">Cartório · Justiça</span><h3>Usucapião</h3><p>Matrícula em seu nome pela posse prolongada.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="registros-cartorio.html"><span class="tag">Registro de Imóveis</span><h3>Registros em cartório</h3><p>Retificação, matrícula, averbações e exigências.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="desmembramento-remembramento.html"><span class="tag">Registro de Imóveis · INCRA</span><h3>Desmembramento e remembramento</h3><p>Dividir ou unir áreas e matrículas.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="ccir.html"><span class="tag">INCRA · SNCR</span><h3>CCIR</h3><p>Cadastro e emissão do certificado do imóvel rural.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="itr.html"><span class="tag">Receita Federal · CAFIR</span><h3>ITR</h3><p>Declaração anual e regularização no CAFIR.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="due-diligence-fundiaria.html"><span class="tag">Compra e venda · Crédito</span><h3>Due diligence fundiária</h3><p>Análise de riscos antes de comprar ou financiar.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="laudo-situacao-fundiaria.html"><span class="tag">Laudo técnico</span><h3>Laudo técnico de situação fundiária</h3><p>Retrato técnico da documentação e dos limites.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="avaliacao-imovel-rural.html"><span class="tag">Laudo de avaliação</span><h3>Avaliação de imóvel rural</h3><p>Laudo de valor da terra e das benfeitorias.</p><span class="more">Saiba mais →</span></a>
+      </div>
+    </div>
+    <div class="cat" id="cat-car">
+      <div class="cat-head"><img src="https://images.unsplash.com/photo-1737154758445-7fcae87148ed?w=144&h=144&fit=crop&auto=format&q=70" alt="" width="72" height="72" loading="lazy"><div><h3 style="font-size:1.3rem">CAR e regularização ambiental</h3><p>Cadastro, recuperação de áreas e defesa ambiental.</p></div></div>
+      <div class="cards">
+        <a class="card" href="car.html"><span class="tag">SICAR · SIMCAR-MT</span><h3>CAR (Cadastro Ambiental Rural)</h3><p>Inscrição, retificação e análise do CAR.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="pra-regularizacao-ambiental.html"><span class="tag">SEMA-MT · PRA</span><h3>PRA (Programa de Regularização Ambiental)</h3><p>Adesão e termo de compromisso para regularizar passivos.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="recuperacao-areas-degradadas.html"><span class="tag">SEMA-MT · IBAMA</span><h3>Recuperação de áreas (PRAD / PRADA)</h3><p>Projeto para recuperar áreas degradadas ou alteradas.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="monitoramento-areas-degradadas.html"><span class="tag">Relatórios técnicos</span><h3>Monitoramento de áreas em recuperação</h3><p>Relatórios periódicos exigidos pelo órgão.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="embargos-ambientais.html"><span class="tag">SEMA-MT · IBAMA</span><h3>Embargos ambientais</h3><p>Análise, defesa e pedido de desembargo.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="contestacao-prodes.html"><span class="tag">INPE · SEMA-MT</span><h3>Contestação de alertas do PRODES</h3><p>Laudo para contestar falso positivo de desmatamento.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="laudo-area-consolidada.html"><span class="tag">Código Florestal</span><h3>Laudo de área consolidada</h3><p>Comprova uso antes de julho de 2008.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="laudos-vegetacao-hidrografia.html"><span class="tag">Laudo técnico</span><h3>Laudos de vegetação e hidrografia</h3><p>Tipologia vegetal, caracterização e cursos d&#x27;água.</p><span class="more">Saiba mais →</span></a>
+      </div>
+    </div>
+    <div class="cat" id="cat-licencas">
+      <div class="cat-head"><img src="https://images.unsplash.com/photo-1779043152010-3591365838aa?w=144&h=144&fit=crop&auto=format&q=70" alt="" width="72" height="72" loading="lazy"><div><h3 style="font-size:1.3rem">Licenças e autorizações</h3><p>Tudo o que a SEMA-MT exige para produzir e operar.</p></div></div>
+      <div class="cards">
+        <a class="card" href="licenciamento-ambiental.html"><span class="tag">SEMA-MT · LP · LI · LO</span><h3>Licenciamento ambiental</h3><p>Licenças para atividades rurais, empresas e mineração.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="licenca-simplificada.html"><span class="tag">SEMA-MT</span><h3>Licença simplificada (LAS / LAC)</h3><p>Modalidades rápidas para atividades de menor impacto.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="apf-rural.html"><span class="tag">SEMA-MT</span><h3>APF rural</h3><p>Autorização Provisória de Funcionamento.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="supressao-vegetacao.html"><span class="tag">SEMA-MT</span><h3>Supressão de vegetação nativa</h3><p>Autorização para abertura de área.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="corte-arvores-isoladas.html"><span class="tag">SEMA-MT</span><h3>Corte de árvores isoladas</h3><p>Autorização para cortar árvores no meio da lavoura ou pasto.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="queima-controlada.html"><span class="tag">SEMA-MT · AQC</span><h3>Autorização de queima controlada</h3><p>Autorização para uso controlado do fogo.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="declaracao-limpeza-area.html"><span class="tag">SEMA-MT</span><h3>Declaração de limpeza de área (DLA)</h3><p>Limpeza de pasto e área já aberta sem risco de multa.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="outorga-agua.html"><span class="tag">SEMA-MT · ANA</span><h3>Outorga de uso da água</h3><p>Direito de uso de rio, poço ou represa.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="regularizacao-barragens.html"><span class="tag">SEMA-MT · Segurança de barragens</span><h3>Regularização de barragens</h3><p>Outorga, cadastro e segurança de represas.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="plano-exploracao-florestal.html"><span class="tag">SEMA-MT · PEF</span><h3>Plano de exploração florestal e inventário</h3><p>Inventário florestal e plano de exploração.</p><span class="more">Saiba mais →</span></a>
+      </div>
+    </div>
+    <div class="cat" id="cat-laudos">
+      <div class="cat-head"><img src="https://images.unsplash.com/photo-1766830110938-0ea8a6d78ecb?w=144&h=144&fit=crop&auto=format&q=70" alt="" width="72" height="72" loading="lazy"><div><h3 style="font-size:1.3rem">Laudos, perícias e consultoria</h3><p>Estudos técnicos, due diligence e acompanhamento.</p></div></div>
+      <div class="cards">
+        <a class="card" href="due-diligence-ambiental.html"><span class="tag">Compra e venda · Crédito</span><h3>Due diligence ambiental</h3><p>Passivos ambientais antes de comprar ou financiar.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="pericia-ambiental.html"><span class="tag">Justiça · Empresas</span><h3>Perícia e auditoria ambiental</h3><p>Perícia judicial, assistência técnica e auditoria.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="laudo-ambiental-rural.html"><span class="tag">Laudo técnico</span><h3>Laudo ambiental rural</h3><p>Caracterização ambiental do imóvel.</p><span class="more">Saiba mais →</span></a>
+        <a class="card" href="consultoria-ambiental-rural.html"><span class="tag">Acompanhamento contínuo</span><h3>Consultoria ambiental e rural</h3><p>Um técnico cuidando da fazenda o ano todo.</p><span class="more">Saiba mais →</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -359,7 +419,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <label for="f-serv">Serviço
         <select id="f-serv">
           <option>Georreferenciamento</option><option>Licenciamento ambiental</option><option>Regularização fundiária</option><option>Usucapião</option><option>Registro em cartório</option><option>Reforma agrária / lote de assentamento</option>
-          <option>CAR</option><option>CCIR</option><option>ITR</option><option>APF</option><option>Mineração</option><option>Embargo ambiental (SEMA / IBAMA)</option><option>Auto de infração / multa</option><option>Outro</option>
+          <option>CAR</option><option>CCIR</option><option>ITR</option><option>APF</option><option>Mineração</option><option>Embargo ambiental (SEMA / IBAMA)</option><option>Auto de infração / multa</option><option>Outorga de água / barragem</option><option>Supressão, corte de árvores ou queima</option><option>Laudo, perícia ou due diligence</option><option>Outro</option>
         </select>
       </label>
       <label for="f-msg">Mensagem<textarea id="f-msg" rows="3" placeholder="Tamanho da área, situação atual, prazo..."></textarea></label>
@@ -389,14 +449,6 @@ const FICHA = "\n\nPara adiantar:\n• Cidade do imóvel: \n• Tamanho da área
 document.querySelectorAll(".js-whats").forEach(a => {
   a.href = wa("Olá, ASSMT! Vim pelo site e quero um orçamento para regularizar meu imóvel." + FICHA);
   a.target = "_blank"; a.rel = "noopener";
-});
-document.querySelectorAll(".svc").forEach(card => {
-  const serv = card.querySelector("h3").textContent.trim();
-  const a = document.createElement("a");
-  a.className = "svc-cta"; a.target = "_blank"; a.rel = "noopener";
-  a.href = wa("Olá, ASSMT! Vim pelo site e quero um orçamento de " + serv + "." + FICHA);
-  a.textContent = "Pedir orçamento no WhatsApp →";
-  card.appendChild(a);
 });
 
 const f = id => document.getElementById(id);
@@ -428,6 +480,5 @@ f("conv-val").addEventListener("input", conv);
 f("conv-un").addEventListener("change", conv);
 conv();
 </script>
-
 </body>
 </html>
